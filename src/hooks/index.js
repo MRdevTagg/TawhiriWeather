@@ -1,0 +1,2 @@
+export {useFetchData} from "./useFetchData";
+
