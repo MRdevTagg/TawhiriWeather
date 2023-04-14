@@ -17,7 +17,8 @@ export function useFetchData(reload) {
           lon: userData.longitude,
           country: userData.country,
           city: userData.city,
-					flag : `https://flagsapi.com/${userData.countryCode}/shiny/64.png`
+					flag : `https://flagsapi.com/${userData.countryCode}/shiny/32.png`,
+          countryCode: userData.countryCode,
         };
         console.log('fetched userdata');
         const getWeather = await fetch(
