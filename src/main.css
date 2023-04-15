@@ -16,7 +16,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
 	backdrop-filter: blur(8px);
-	/* background-image: url('https://img4.goodfon.com/wallpaper/nbig/e/c5/priroda-oblaka-solnyshko-iasnaia-pogoda.jpg'); */
+	 background-image: url('src/assets/clear.jpg'); 
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,11 +43,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
+
 table {
   border-collapse: collapse;
   width: 100%;

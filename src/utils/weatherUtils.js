@@ -1,6 +1,6 @@
 export const dayName = (string)=> {
   const date = new Date(string);
-  return date.toLocaleDateString(navigator.language, { weekday: 'long' }); 
+  return date.toLocaleDateString(navigator.language, { weekday: 'short' }); 
 }
 
 export const weatherState = {
