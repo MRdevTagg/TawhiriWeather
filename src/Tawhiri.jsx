@@ -23,7 +23,11 @@ function Tawhiri() {
   setReload(prevState => !prevState);
  }
  const onQuery = () =>{
-    setQuery(InputValue.current.value);
+  setQuery(InputValue.current.value);
+ }
+ const onQueryLoacation = ()=>{
+  InputValue.current.value = null
+  onQuery()
  }
   return (
     <>
@@ -31,9 +35,12 @@ function Tawhiri() {
         <>
         <Header>
           <h1>Tawhiri is running...</h1>
-          <button type="submit" onClick={onReload}> Refresh </button>
+          <div>
           <input type="text" ref={InputValue}/>
-          <button type="submit"onClick={onQuery}>Search City</button>
+          <button type="submit" onClick={onReload}><img src='src/assets/refresh.svg'/></button>
+            <button type="submit"onClick={onQuery}><img src='src/assets/search-city.svg'/></button>
+            <button type="submit" onClick={onQueryLoacation}><img src='src/assets/search-location.svg'/></button>
+          </div>
         </Header>  
       </>)}
       {weather && weather.current_weather && (
