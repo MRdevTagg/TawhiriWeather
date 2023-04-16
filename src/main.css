@@ -1,4 +1,6 @@
 html {
+  width: 100%;
+  overflow-x: hidden;
   box-sizing: border-box;
   font-size: 16px;
 	-webkit-tap-highlight-color: transparent;
@@ -9,14 +11,15 @@ html {
   box-sizing: inherit;
 }
 
-body {
+body,#root {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-	backdrop-filter: blur(8px);
+
 	 background-image: url('src/assets/clear.jpg'); 
+   background-attachment: fixed;
 }
 
 h1, h2, h3, h4, h5, h6 {

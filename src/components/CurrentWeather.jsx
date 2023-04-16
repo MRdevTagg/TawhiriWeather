@@ -5,6 +5,7 @@ export const CurrentWeather = styled.div`
 	flex-direction: column;
 	height: fit-content;
 	padding:1.5rem;
+	color: #27528D;
 
 	& header{
 		display: flex;
@@ -15,7 +16,7 @@ export const CurrentWeather = styled.div`
 		font-size: 1.5rem;
 
 	}
-	> div{
+	> div.country{
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -25,6 +26,8 @@ export const CurrentWeather = styled.div`
 		padding: 0.5rem;
 		margin: 0.5rem;
 		font-size: 1.5rem;
+	
 	}
+	
 
 `

@@ -8,12 +8,14 @@ export const DayCardContainer = styled.div`
   padding: .5rem;
   margin: .5rem;
   gap: .5rem;
- 
 flex-wrap: wrap;
-& div{
+> div{
   -ms-wrap-flow: both;
 }
-@media (max-width: 400px) {
+> h2{
+  padding: 0%.5rem;
+}
+@media (max-width: 500px) {
   flex-direction: column;
 }  
 `;
@@ -24,12 +26,13 @@ export const DayCard = styled.div`
   justify-content: center;
   align-items: center;
   padding: 8px;
+  margin:.5rem;
   margin-bottom: 8px;
   background-color: #ffffff37;
   border-radius: 4px;
   backdrop-filter: blur(4px);
-  min-width: 120px;
-  height:180px;
+  width: 150px;
+  height:220px;
   box-shadow: inset 0 0 12px #fff, 0 0 12px #0000003e;
   aspect-ratio: 4/5;
   transition: transform .7s;
@@ -47,7 +50,7 @@ export const DayCard = styled.div`
     background-color: #0b4f83ed;
     border-radius: 5px 5px 0 0;
     padding: .2rem .5rem;
-    & h2{
+    > h2{
       color: #cedffb;
     }
   }
@@ -81,5 +84,8 @@ export const DayCard = styled.div`
     font-weight: bold;
     background-color: #00000071;
     border-radius: 4px;
+  }
+  @media (max-width: 500px) {
+    width:90% ;
   }
 `;

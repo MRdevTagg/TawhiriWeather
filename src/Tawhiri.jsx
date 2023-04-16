@@ -2,17 +2,14 @@ import { useRef, useState } from "react";
 import { useFetchData } from "./hooks";
 import { DailyWeather } from "./components/DailyWeather";
 import { DayCardContainer } from "./styleds/DailyWeatherST";
-import { weatherState } from "./utils/weatherUtils";
+import { weatherState, weatherStateImages } from "./utils/weatherUtils";
 import { Header } from "./styleds";
-import Clock from "./utils/clock";
+
 import { CurrentWeather } from "./components/CurrentWeather";
-import styled from "styled-components";
 
 
-const StyledClock = styled.p`
-	font-size: 28px ;
-	text-shadow: 0 0 10px#00000056;
-`
+
+
 
 function Tawhiri() {
   const [reload, setReload] = useState(true);
@@ -34,34 +31,35 @@ function Tawhiri() {
       {location && (
         <>
         <Header>
-          <h1>Tawhiri is running...</h1>
-          <div>
-          <input type="text" ref={InputValue}/>
-          <button type="submit" onClick={onReload}><img src='src/assets/refresh.svg'/></button>
-            <button type="submit"onClick={onQuery}><img src='src/assets/search-city.svg'/></button>
-            <button type="submit" onClick={onQueryLoacation}><img src='src/assets/search-location.svg'/></button>
+            <div className="logo-container">
+            <img className="logo" src="src/assets/tawhiri-logoisohor.svg" alt="TAWHIRI WEATHER"/>
+            </div>
+            <div>
+            <input type="text" ref={InputValue} placeholder="Search by City"/> 
+            <button type="submit" onClick={onReload}><img src='src/assets/refresh.svg' alt="Refresh"/></button>
+            <button type="submit"onClick={onQuery}><img src='src/assets/search-city.svg' alt="Search by city"/></button>
+            <button type="submit" onClick={onQueryLoacation}><img src='src/assets/search-location.svg' alt="Search by Location"/></button>
           </div>
         </Header>  
       </>)}
       {weather && weather.current_weather && (
         
         <CurrentWeather>
-          <header>
-            <h2>Current Weather</h2>
-            <StyledClock><Clock /></StyledClock>
-          </header>
+
           <div className="country">
             <img style={{ objectFit:'contain',filter: 'drop-shadow(0 0 8px #00000040)' }} src={location.flag} alt={location.country} />
             <p>{`${ location.country } / ${ location.city }`}</p>
           </div>
             <p> Temperature: { weather.current_weather.temperature } &deg;C</p>
+            <img style={{width:'80px'}} src={weatherStateImages[weather.current_weather.weathercode]} alt="" srcset="" />
             <p> Weather state: { weatherState[weather.current_weather.weathercode] }</p>
-         
+
            </CurrentWeather>
         
       )}
       <div>
-        <h1>DAYLY WEATHER</h1>
+ 
+        <h1 style={{padding:'1rem',color: '#27528D'}}>DAYLY WEATHER</h1>
         <DayCardContainer>
           {weather && weather.daily 
           && weather.daily.time.map((day, i) => DailyWeather(weather, day, i))}
