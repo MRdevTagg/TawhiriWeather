@@ -1,10 +1,28 @@
 import { useState, useEffect } from "react";
+const weatherParams = {
+  current_weather: true,
+  timezone: "auto",
+  daily: ["temperature_2m_max", "temperature_2m_min", "weathercode",'precipitation_probability_mean','apparent_temperature_max'],
+  forecast_days: "15",
+  hourly:['temperature_2m','precipitation_probability','apparent_temperature'],
+}
+const weatherAPI = 'https://api.open-meteo.com/v1/forecast';
 
-export function useFetchData(reload,query) {
+function buildURL( baseUrl, params, location ) {
+  const updatedParams = {
+    ...location,
+    ...params,
+  };
+  const url = `${baseUrl}?${new URLSearchParams(updatedParams).toString()}`;
+  return url;
+}
+
+
+export function useFetchData( reload, query) {
   const [weather, setWeather] = useState({});
-  const [search, setSearch] = useState(query || '')
   const [location, setLocation] = useState({});
   const [error, setError] = useState("");
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,40 +34,32 @@ export function useFetchData(reload,query) {
           );
           let data = await getUserData.json();
           userData = data.results[0]
-          console.log('query')
-
         } else {
-          const getUserData = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=b5a7f3b724d9464da4542faa9654b430`);
+          const getUserData = await fetch(`http://ip-api.com/json/`);
           userData = await getUserData.json();
-          console.log('byip')
-
         }
-			  let filteredUserData = {
-          lat: userData.lat || userData.latitude ,
-          lon: userData.lon || userData.longitude,
+			  const filteredUserData = {
+          latitude: userData.lat || userData.latitude ,
+          longitude: userData.lon || userData.longitude,
           country: userData.country || userData.country_name,
           city: userData.city || userData.name,
-					flag : `https://flagsapi.com/${userData.country_code2 || userData.country_code}/shiny/64.png` || '',
-          countryCode: userData.country_code || userData.country_code,
-        };
-        console.log(userData);
-        const getWeather = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${filteredUserData.lat}&longitude=${filteredUserData.lon}&current_weather=true&timezone=auto&daily=temperature_2m_max&daily=temperature_2m_min&daily=weathercode`
-        );
+					flag : `https://flagsapi.com/${userData.countryCode || userData.country_code}/shiny/64.png` || '',
+          countryCode: userData.country_code || userData.countryCode,
+        }
+        const { latitude, longitude } = filteredUserData
+        const getWeather = await fetch( buildURL( weatherAPI, weatherParams, {latitude, longitude} ) );
 				const weather = await getWeather.json();
-        console.log('fetched weather');
-
+        
         setLocation(filteredUserData);
         setWeather(weather);
-        console.log(filteredUserData.city);
       
-      } catch (err) {
+      } 
+      catch (err) {
         setError(err);
       }
-    };
-    
+    };    
     fetchData();
-		setSearch('')
+
   }, [reload,query]);
 
   return { weather, location, error };

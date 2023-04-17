@@ -5,6 +5,6 @@ import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Tawhiri />
+    <Tawhiri style={{overflow:'hidden'}}/>
   </React.StrictMode>,
 )

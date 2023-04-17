@@ -1,2 +1,1 @@
-export * from './Header'
-export * from './DailyWeatherST'
+export * from '../components/Header'

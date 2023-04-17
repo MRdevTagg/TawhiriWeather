@@ -1,7 +1,12 @@
 export const dayName = (string)=> {
-  const date = new Date(string);
-  return date.toLocaleDateString('en', { weekday: 'short' }); 
+  const date = new Date(string)
+  const options = { weekday: 'long' ,timeZone:'UTC'};
+  const formatter = new Intl.DateTimeFormat('en-US', options);
+  const dayOfWeek = formatter.format(date);
+  return dayOfWeek; 
 }
+
+export const accuIconsURL = (icon = '01') =>`https://developer.accuweather.com/sites/default/files/${icon}-s.png`;
 
 export const weatherState = {
   0: 'Clear sky',
@@ -33,33 +38,33 @@ export const weatherState = {
   96: 'Thunderstorm with slight hail',
   99: 'Thunderstorm with heavy hail'
 };
-export const weatherStateImages = {
-  0: 'https://developer.accuweather.com/sites/default/files/01-s.png',
-  1: 'https://developer.accuweather.com/sites/default/files/02-s.png',
-  2: 'https://developer.accuweather.com/sites/default/files/08-s.png',
-  3: 'https://developer.accuweather.com/sites/default/files/11-s.png',
-  45: 'https://developer.accuweather.com/sites/default/files/11-s.png',
-  48: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  51: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  53: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  55: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  56: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  57: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  61: 'https://developer.accuweather.com/sites/default/files/18-s.png',
-  63: 'https://developer.accuweather.com/sites/default/files/18-s.png',
-  65: 'https://developer.accuweather.com/sites/default/files/18-s.png',
-  66: 'https://developer.accuweather.com/sites/default/files/26-s.png',
-  67: 'https://developer.accuweather.com/sites/default/files/26-s.png',
-  71: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  73: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  75: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  77: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  80: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  81: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  82: 'https://developer.accuweather.com/sites/default/files/12-s.png',
-  85: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  86: 'https://developer.accuweather.com/sites/default/files/22-s.png',
-  95: 'https://developer.accuweather.com/sites/default/files/15-s.png',
-  96: 'https://developer.accuweather.com/sites/default/files/15-s.png',
-  99: 'https://developer.accuweather.com/sites/default/files/15-s.png'
+export const forecastIcons = {
+  0: accuIconsURL('01'),
+  1: accuIconsURL('02'),
+  2: accuIconsURL('08'),
+  3: accuIconsURL('11'),
+  45: accuIconsURL('11'),
+  48: accuIconsURL('12'),
+  51: accuIconsURL('12'),
+  53: accuIconsURL('12'),
+  55: accuIconsURL('12'),
+  56: accuIconsURL('12'),
+  57: accuIconsURL('12'),
+  61: accuIconsURL('18'),
+  63: accuIconsURL('18'),
+  65: accuIconsURL('18'),
+  66: accuIconsURL('26'),
+  67: accuIconsURL('26'),
+  71: accuIconsURL('22'),
+  73: accuIconsURL('22'),
+  75: accuIconsURL('22'),
+  77: accuIconsURL('22'),
+  80: accuIconsURL('12'),
+  81: accuIconsURL('12'),
+  82: accuIconsURL('12'),
+  85: accuIconsURL('22'),
+  86: accuIconsURL('22'),
+  95: accuIconsURL('15'),
+  96: accuIconsURL('15'),
+  99: accuIconsURL('15')
 }
