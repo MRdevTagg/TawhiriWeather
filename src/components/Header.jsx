@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
-import styled from "styled-components";
-
+import { useRef, useState } from 'react';
+import styled from 'styled-components';
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable react/prop-types */
 export const StyledHeader = styled.header`
 overflow: hidden;
 	display: flex;
@@ -77,30 +78,29 @@ const InputSearch = styled.form`
 	overflow:hidden;
 	align-items: center;
 	height: 70px;
-	width: ${props => props.hidden ? '70px' : '330px'};
+	width: ${(props) => props.hidden ? '70px' : '330px'};
 	transition: width .5s;
 	> input{
 			transition: width .5s, opacity .7s, padding 1s, margin .4s;
-			padding:${props => props.hidden ? '0' : '.5rem'};
-			opacity: ${props => props.hidden ? '0' : '1'};
-			
-			
+			padding:${(props) => props.hidden ? '0' : '.5rem'};
+			opacity: ${(props) => props.hidden ? '0' : '1'};
 			border: none;
 			outline:none;
 			border-radius: 15px;
-			width: ${props => props.hidden ? '0' : '250px'};
+			width: ${(props) => props.hidden ? '0' : '250px'};
 			height: fit-content;
 			background: #ffffff8f;
 	}
 	@media (max-width: 800px) {
 			 height: 50px;
-			 width: ${props => props.hidden ? '50px' : '200px'};
+			 width: ${(props) => props.hidden ? '50px' : '200px'};
 			 gap: 5px;
-
 	};
 `;
 
-export function Header({ onReload, onQuery, onQueryLoacation, setInputValue, inputValue }) {
+export function Header({
+	onReload, onQuery, onQueryLoacation, setInputValue, inputValue,
+}) {
 	const InputValue = useRef();
 	const [inputHidden, setinputHidden] = useState(true);
 	const [searchbtnClickCount, setSearchbtnClickCount] = useState(1);
@@ -112,28 +112,28 @@ export function Header({ onReload, onQuery, onQueryLoacation, setInputValue, inp
 		if (searchbtnClickCount === 1) {
 			setSearchbtnClickCount(2);
 			setinputHidden(false);
-			InputValue.current.focus()
+			InputValue.current.focus();
 		} else if (searchbtnClickCount === 2) {
 			setSearchbtnClickCount(1);
 			setinputHidden(true);
-			InputValue.current.value.length > 1 && onQuery();
-			setInputValue('')
+			if (InputValue.current.value.length > 1) onQuery();
+			setInputValue('');
 		}
 	};
- 
+
 	return (
-		<StyledHeader>
-			<div className="logo-container">
-				<img className="logo" src="src/assets/tawhiri-logoisohor.svg" alt="TAWHIRI WEATHER" />
-			</div>
-			<div className="buttons">
-				<InputSearch hidden={inputHidden}>
-					<Button type="submit" onClick={handleSearchClick}><img src='src/assets/search.svg' alt="Search by city" /></Button>
-					<input type="text" ref={InputValue} placeholder="Search by City" value={inputValue} onChange={handleInputChange} />
-				</InputSearch>
-				<Button type="submit" onClick={onQueryLoacation}><img src='src/assets/search-location.svg' alt="Search by Location" /></Button>
-				<Button type="submit" onClick={onReload}><img src='src/assets/refresh.svg' alt="Refresh" /></Button>
-			</div>
-		</StyledHeader>
+  <StyledHeader>
+    <div className="logo-container">
+      <img className="logo" src="src/assets/tawhiri-logoisohor.svg" alt="TAWHIRI WEATHER" />
+    </div>
+    <div className="buttons">
+      <InputSearch hidden={inputHidden}>
+        <Button type="submit" onClick={handleSearchClick}><img src="src/assets/search.svg" alt="Search by city" /></Button>
+        <input type="text" ref={InputValue} placeholder="Search by City" value={inputValue} onChange={handleInputChange} />
+      </InputSearch>
+      <Button type="submit" onClick={onQueryLoacation}><img src="src/assets/search-location.svg" alt="Search by Location" /></Button>
+      <Button type="submit" onClick={onReload}><img src="src/assets/refresh.svg" alt="Refresh" /></Button>
+    </div>
+  </StyledHeader>
 	);
 }

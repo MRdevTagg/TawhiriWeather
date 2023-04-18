@@ -40,7 +40,7 @@ export function useFetchData( reload, query) {
   };  
   useEffect(() => {  
     fetchData();
-    console.log('dataFetched')
+
   }, [reload,query]);
 
   return { weather, location, error };

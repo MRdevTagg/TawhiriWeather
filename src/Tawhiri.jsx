@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
-import { useFetchData } from "./hooks";
-import { Header, DailyWeather, CurrentWeather, ErrorWindow, MainSection} from "./components";
+import { useEffect, useState } from 'react';
+import { useFetchData } from './hooks';
+import {
+ Header, DailyWeather, CurrentWeather, ErrorWindow, MainSection,
+} from './components';
 
 function Tawhiri() {
-  const [ reload, setReload ] = useState(true);
-  const [ query, setQuery ] = useState('');
-  const { weather, location, error } = useFetchData(reload,query);
-  const [ inputValue, setInputValue ] = useState('');
+  const [reload, setReload] = useState(true);
+  const [query, setQuery] = useState('');
+  const { weather, location, error } = useFetchData(reload, query);
+  const [inputValue, setInputValue] = useState('');
 
   const [intervalId, setIntervalId] = useState(null);
 
@@ -17,41 +19,42 @@ function Tawhiri() {
     setIntervalId(
       setInterval(() => {
         setReload((prevReload) => !prevReload);
-      }, 300000)
+      }, 300000),
     );
   }, [query]);
-  
- const onReload = () =>{
-  setReload(prevState => !prevState);
- }
- const onQuery = () =>{
+
+ const onReload = () => {
+  setReload((prevState) => !prevState);
+ };
+ const onQuery = () => {
    setQuery(inputValue);
- }
- const onQueryLoacation = ()=>{
-    setQuery(null)
- }
- 
+ };
+ const onQueryLoacation = () => {
+    setQuery(null);
+ };
+
   return (
     <>
-    {error && <ErrorWindow/>}
-      { location && <Header 
-            weather={weather}
-            style={{overflow:'hidden',top:'0'}} 
-            onQuery={onQuery}  
-            onReload={onReload}  
-            onQueryLoacation={onQueryLoacation}
-            inputValue={inputValue}
-            setInputValue={setInputValue}/>            
-      }
+      {error && <ErrorWindow />}
+      { location && (
+      <Header
+        weather={weather}
+        style={{ overflow: 'hidden', top: '0' }}
+        onQuery={onQuery}
+        onReload={onReload}
+        onQueryLoacation={onQueryLoacation}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+)}
 
       <MainSection>
-      { weather && weather.current_weather && <CurrentWeather weather={weather} location={location}/> }          
-      { weather && weather.daily && <DailyWeather weather={weather} /> }
+        { weather && weather.current_weather
+        && <CurrentWeather weather={weather} location={location} /> }
+        { weather && weather.daily && <DailyWeather weather={weather} /> }
       </MainSection>
     </>
   );
 }
 
 export default Tawhiri;
-
-

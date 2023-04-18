@@ -1,19 +1,18 @@
-
 // util function to get formated day name or date number
-export const dayGet = (string)=> {
-  const date = new Date(string)
-  const options = { weekday: 'long' ,timeZone:'UTC'};
+export const dayGet = (string) => {
+  const date = new Date(string);
+  const options = { weekday: 'long', timeZone: 'UTC' };
   const formatter = new Intl.DateTimeFormat('en-US', options);
   const dayOfWeek = formatter.format(date);
-  const dayNumber = string.split('-')
+  const dayNumber = string.split('-');
   return {
-    name: dayOfWeek, 
-    number:`${dayNumber[1]}/${dayNumber[2]}`}
-    ; 
-}
+    name: dayOfWeek,
+    number: `${dayNumber[1]}/${dayNumber[2]}`,
+  };
+};
 
 // shorcut to get icons from accuWeather
-export const accuIconsURL = (icon = '01') =>`https://developer.accuweather.com/sites/default/files/${icon}-s.png`;
+export const accuIconsURL = (icon = '01') => `https://developer.accuweather.com/sites/default/files/${icon}-s.png`;
 
 // objects to handle weathercode cases
 export const weatherState = {
@@ -44,7 +43,7 @@ export const weatherState = {
   86: 'Snow showers: Heavy intensity',
   95: 'Thunderstorm: Slight or moderate',
   96: 'Thunderstorm with slight hail',
-  99: 'Thunderstorm with heavy hail'
+  99: 'Thunderstorm with heavy hail',
 };
 export const forecastIcons = {
   0: accuIconsURL('01'),
@@ -74,5 +73,5 @@ export const forecastIcons = {
   86: accuIconsURL('22'),
   95: accuIconsURL('15'),
   96: accuIconsURL('15'),
-  99: accuIconsURL('15')
-}
+  99: accuIconsURL('15'),
+};

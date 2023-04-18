@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { accuIconsURL } from '../utils/weatherUtils';
-
-
+/* eslint-disable react/prop-types */
 const MinMaxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,13 +24,18 @@ const MinMaxContainer = styled.div`
 `;
 
 function MinMax({ minTemp, maxTemp }) {
-
-  return (
-    <MinMaxContainer>
-			<div className="min"> <p> &deg;{minTemp} </p> <img src={accuIconsURL('31')} alt="min" /> </div>
-      <div className="max"> <p> &deg;{maxTemp} </p> <img src={accuIconsURL('30')} alt="max" /> </div>
-    </MinMaxContainer>
-  );
+return (
+  <MinMaxContainer>
+    <div className="min">
+      <p>&deg;{minTemp}</p>
+      <img src={accuIconsURL('31')} alt="min" /> 
+    </div>
+    <div className="max">
+      <p>&deg;{maxTemp}</p>
+      <img src={accuIconsURL('30')} alt="max" />
+    </div>
+  </MinMaxContainer>
+);
 }
 
 export default MinMax;

@@ -20,6 +20,8 @@ module.exports = {
     indent: 'off',
     'linebreak-style': 'off',
     'no-console': 'off',
+    'no-tabs': 'off',
+    'no-mixed-spaces-and-tabs': 'off',
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'react/react-in-jsx-scope': 'off',

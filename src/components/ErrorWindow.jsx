@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 const ErrorWindowContainer = styled.div`
 position: absolute;
@@ -30,5 +30,5 @@ export const ErrorWindow = () => {
 			<img src="../src/assets/tawhiri-iso.svg" alt="Tawhiri"/>
 			<h1> We have and issue fetching the data <br /> Check your internet connection and reload the page...  </h1>
 		</ErrorWindowContainer>
-	)
-}
+	);
+};

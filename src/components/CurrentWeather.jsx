@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { weatherState, forecastIcons } from "../utils/weatherUtils";
-import MinMax from "./MinMax";
-import LocationDisplay from "./LocationDisplay";
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
+import styled from 'styled-components';
+import { weatherState, forecastIcons } from '../utils/weatherUtils';
+import MinMax from './MinMax';
+import { LocationDisplay } from './LocationDisplay';
 
 const StyledContainer = styled.div`
 	display: flex;
@@ -15,7 +17,7 @@ const StyledContainer = styled.div`
 	 margin-bottom: 5px;
 	}
 	>*{ overflow:hidden; }
-`
+`;
 export const StyledCurrentWeather = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -86,18 +88,17 @@ export function CurrentWeather({ weather, location }) {
 	const { weathercode, temperature, winddirection } = weather.current_weather;
 	const { precipitation_probability_mean, temperature_2m_min, temperature_2m_max }= weather.daily;	
 	return (
-	<StyledContainer>
-<LocationDisplay location={location}/>
-		<StyledCurrentWeather>
-			<div className="title">
-				<h1> CURRENT WEATHER</h1>
-			</div>	
+  <StyledContainer>
+    <LocationDisplay location={location}/>
+    <StyledCurrentWeather>
+      <div className="title">
+        <h1> CURRENT WEATHER</h1>
+				</div>
 			<div className="forecast">
 				<div className="forecast-left">
-				<img className="forecast-icon" src={ forecastIcons[weathercode] } alt="" />
-				<MinMax minTemp={temperature_2m_min[0]} maxTemp={temperature_2m_max[0]} />
-
-				</div>
+          <img className="forecast-icon" src={ forecastIcons[weathercode] } alt="weatherIcon" />
+          <MinMax minTemp={temperature_2m_min[0]} maxTemp={temperature_2m_max[0]} />
+			  </div>
 				<div className="forecast-right">
 					<p> <b>Forecast:</b> { weatherState[weathercode] }</p>
 					<p> <b>Wind direction:</b> {winddirection}kmh</p>
@@ -105,7 +106,7 @@ export function CurrentWeather({ weather, location }) {
 					<p> <b>Precipitation probability:</b> { precipitation_probability_mean[0] }%</p>
 				</div>
 			</div>
-		</StyledCurrentWeather>
-	</StyledContainer>	
+    </StyledCurrentWeather>
+  </StyledContainer>
 );
 }

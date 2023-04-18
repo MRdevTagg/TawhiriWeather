@@ -1,6 +1,6 @@
-import MinMax from "./MinMax";
-import { dayGet, weatherState, forecastIcons } from "../utils/weatherUtils";
-import styled from "styled-components";
+import styled from 'styled-components';
+import MinMax from './MinMax';
+import { dayGet, weatherState, forecastIcons } from '../utils/weatherUtils';
 
 export const DayCardContainer = styled.div`
   display: flex;
@@ -125,26 +125,34 @@ overflow-y: hidden;
 
 `;
 
-export const DailyWeather = ({weather}) => {
+export function DailyWeather({ weather }) {
   const { weathercode, temperature_2m_min, temperature_2m_max, time } = weather.daily;
-  return (     
+  return (
 
-  <DayCardContainer>
-    <div className="title">
-       <h2>DAILY WEATHER</h2>
-    </div>
-    {time.map((day, i) => 
-  i > 0 &&
+    <DayCardContainer>
+      <div className="title">
+        <h2>DAILY WEATHER</h2>
+      </div>
+      {time.map((day, i) => i > 0
+    && (
     <DayCard key={day}>
-        <pre><h2>{ dayGet(day).name.toUpperCase() }</h2> <h3>{ dayGet(day).number }</h3></pre>    
+      <pre>
+        <h2>{ dayGet(day).name.toUpperCase() }</h2>
+
+        <h3>{ dayGet(day).number }</h3>
+      </pre>
       <div className="weather-state">
-        <p className="w-state">{weatherState[weathercode[i]].split(':')[0]}:<br/>{weatherState[weathercode[i]].split(':')[1]}</p>
-        <img className="weatherIcon" src={forecastIcons[weathercode[i]]}alt="" />
+        <p className="w-state">
+          {weatherState[weathercode[i]].split(':')[0]}
+          :
+          <br />
+          {weatherState[weathercode[i]].split(':')[1]}
+        </p>
+        <img className="weatherIcon" src={forecastIcons[weathercode[i]]} alt="" />
         <MinMax minTemp={temperature_2m_min[i]} maxTemp={temperature_2m_max[i]} />
       </div>
-    </DayCard>)}
-  </DayCardContainer>
-);
-
+    </DayCard>
+))}
+    </DayCardContainer>
+  );
 }
-
