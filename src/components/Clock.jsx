@@ -8,7 +8,7 @@ function Clock({timezone}) {
       setTime(new Date());
     }, 1000);
     return () => clearInterval(intervalID);
-  }, []);
+  }, [timezone]);
 
   const formattedTime = time.toLocaleTimeString('en-US', { timeZone: timezone, hour12: true });
 
