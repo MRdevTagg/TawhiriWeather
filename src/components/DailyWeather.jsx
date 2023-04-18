@@ -1,4 +1,5 @@
-import { accuIconsURL, dayName, weatherState, forecastIcons } from "../utils/weatherUtils";
+import MinMax from "../utils/MinMax";
+import { dayGet, weatherState, forecastIcons } from "../utils/weatherUtils";
 import styled from "styled-components";
 
 export const DayCardContainer = styled.div`
@@ -6,73 +7,89 @@ export const DayCardContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: .5rem;
-  margin: .5rem;
+  padding: .5rem .5rem 0 .5rem;
+  margin: 0 .5rem;
   width: 450px;
-  gap: .5rem;
+  min-width: 400px;
+  gap: .1rem;
   border-radius: 12px;
   box-shadow:inset 0 0 6px #ffffffc0, 0 0 12px #00000033;
   background-color: #ffffff63;
   backdrop-filter: blur(2px);
+  height: calc(100vh - 110px);
+  overflow: scroll;
 ::-webkit-scrollbar{
   width: 0
 }
 
 > .title{
+ 
   width: 100%;
-  padding: .5rem 1rem;
+ 
   align-self: flex-start;
-  
-  font-size: 1.5rem;
+  min-height: 3rem;
   background-color: #27528dc7;
   border-radius: 12px 12px 0 0; 
-  color: #daeeff;
+  >h2{
+    font-size: 1.5rem;
+    color: #daeeff;
+    padding: .5rem 1rem;
+  }
 }@media (max-width: 500px) {
+  min-width: 95%;
+
      width: 95%;
+     height:100%
 } 
 `;
 
 export const DayCard = styled.div`
 overflow-y: hidden;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items:space-between;
   padding: 8px;
-  margin:.5rem;
   margin-bottom: 8px;
   background-color: #ffffff4d;
   border-radius: 4px;
   backdrop-filter: blur(4px);
   max-width: 100%;
  width: 400px;
-  height:120px;
+  min-height:130px;
   box-shadow: inset 0 0 6px #ffffffc0, 0 0 12px #0000003e;
-  aspect-ratio: 4/5;
-  transition: box-shadow 7s, transform .7s;
+  transition: transform .7s;
   &:hover {
     transform: scale(1.05);
-    box-shadow: inset 0 0 12px #fff, 0 4px 12px #0000003e;
-  }
 
-  & header {
-    font-size: 12px;
+  }
+*{ overflow:hidden; }
+  >pre {
+    min-width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    font-weight: bold;
-    height: 100%;
-    width: 130px;
-    text-align: center;
-    border-radius: 5px 5px 0 0;
-    padding: 0;
+    align-items: center;
+    width: fit-content;
+    margin: 0 0 .2rem;
+    padding: .2rem;
+    > h2,h3{padding: .2rem .4rem;}
     > h2{
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
       color: #cedffb;
-      padding: .2rem .4rem;
-      border-radius: 5px;  
+      border-radius: 4px;  
       background-color: #0b4f83b3;
-    } 
+    }
+    >h3{
+      color:#0b4f83b3;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      border: 1px solid #003771;
+      border-radius: 1rem;
+
+    }
     > .w-state { 
       text-align: left;
     font-size: 15px; 
@@ -80,52 +97,30 @@ overflow-y: hidden;
   }
   }
 
-  & img {
+
+.weather-state{
+  height:fit-content;
+  display: flex;
+ justify-content: space-between;
+ align-items: flex-start;
+ >*{
+  width:33.3%;
+ }
+  > img {
     width: 80px;
     height: 80px;
-    margin-bottom: 10px;
     object-fit: contain;
   }
 
-  & p {
+  > p {
     font-size: 15px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     margin: 2px;
     padding: 2px;
     color: #003771;
   }
-.weather-state{
-  display: flex;
-  place-content: center;
 }
-  .min,.max{
-     display:flex; 
-     padding: 0;
-     >img{
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      margin: 0;
-      padding: 0;
-    }
-    }
-  >.minmax{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
- >div{
-  display:flex;
-  justify-content: center;
-  align-items: center;
- 
-    > p{
-    font-size: 20px;
-    padding: 0;
-    margin: 0;
-   }}
-  }
 
 `;
 
@@ -134,20 +129,17 @@ export const DailyWeather = ({weather}) => {
   return (     
 
   <DayCardContainer>
-    <h2 className="title">DAILY WEATHER</h2>
+    <div className="title">
+       <h2>DAILY WEATHER</h2>
+    </div>
     {time.map((day, i) => 
-  
+  i > 0 &&
     <DayCard key={day}>
-      <header> 
-        <h2>{ dayName(day).toUpperCase() }</h2> 
-        <p className="w-state">{weatherState[weathercode[i]].split(':')[0]}:<br/>{weatherState[weathercode[i]].split(':')[1]}</p>
-      </header>
+        <pre><h2>{ dayGet(day).name.toUpperCase() }</h2> <h3>{ dayGet(day).number }</h3></pre>    
       <div className="weather-state">
+        <p className="w-state">{weatherState[weathercode[i]].split(':')[0]}:<br/>{weatherState[weathercode[i]].split(':')[1]}</p>
         <img className="weatherIcon" src={forecastIcons[weathercode[i]]}alt="" />
-      </div>
-      <div className='minmax'>
-        <div className="min"> <img src={accuIconsURL('31')} alt="min" /> <p> &deg;{temperature_2m_min[i]} </p></div>
-        <div className="max"> <img src={accuIconsURL('30')} alt="max" /> <p> &deg;{temperature_2m_max[i]} </p></div>
+        <MinMax minTemp={temperature_2m_min[i]} maxTemp={temperature_2m_max[i]} />
       </div>
     </DayCard>)}
   </DayCardContainer>

@@ -39,11 +39,12 @@ export function useFetchData( reload, query) {
           userData = await getUserData.json();
         }
 			  const filteredUserData = {
+          timezone: userData.timezone,
           latitude: userData.lat || userData.latitude ,
           longitude: userData.lon || userData.longitude,
           country: userData.country || userData.country_name,
           city: userData.city || userData.name,
-					flag : `https://flagsapi.com/${userData.countryCode || userData.country_code}/shiny/64.png` || '',
+					flag : `https://www.countryflagicons.com/SHINY/64/${userData.countryCode || userData.country_code}.png` || '',
           countryCode: userData.country_code || userData.countryCode,
         }
         const { latitude, longitude } = filteredUserData

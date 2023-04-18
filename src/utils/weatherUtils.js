@@ -1,9 +1,13 @@
-export const dayName = (string)=> {
+export const dayGet = (string)=> {
   const date = new Date(string)
   const options = { weekday: 'long' ,timeZone:'UTC'};
   const formatter = new Intl.DateTimeFormat('en-US', options);
   const dayOfWeek = formatter.format(date);
-  return dayOfWeek; 
+  const dayNumber = string.split('-')
+  return {
+    name: dayOfWeek, 
+    number:`${dayNumber[1]}/${dayNumber[2]}`}
+    ; 
 }
 
 export const accuIconsURL = (icon = '01') =>`https://developer.accuweather.com/sites/default/files/${icon}-s.png`;

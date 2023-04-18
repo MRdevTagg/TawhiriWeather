@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const StyledHeader = styled.header`
 overflow: hidden;
-position: fixed;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -18,7 +17,7 @@ position: fixed;
 	height:100px;
 	background-image: linear-gradient(to left, #c6e3ff85,#d0f1ff1a 80%);
 	width: 100%;
-	z-index: 99999;
+	z-index: 9999;
 	>*{
 		overflow: hidden;
 	}
@@ -26,7 +25,7 @@ position: fixed;
 	.logo{
 		padding: 0;
 		max-height: 80px;
-		max-width: 170px;
+		max-width: 200px;
 		width: fit-content;
 		object-fit:contain;	
 	@media (max-width: 800px) {
@@ -41,7 +40,8 @@ position: fixed;
 		justify-content: space-between;
 		gap:10px;
 		}
-		@media ( max-width: 800px ) {
+@media ( max-width: 800px ) {
+			 position: fixed;
 			 height: 60px;
 			 gap:5px;
 	}
@@ -71,7 +71,7 @@ position: fixed;
 			 width: 40px;
 	}
 		
- `
+ `;
 const InputSearch = styled.form`
 	display: flex;
 	overflow:hidden;
@@ -116,7 +116,7 @@ export function Header({ onReload, onQuery, onQueryLoacation, setInputValue, inp
 		} else if (searchbtnClickCount === 2) {
 			setSearchbtnClickCount(1);
 			setinputHidden(true);
-			onQuery();
+			InputValue.current.value.length > 1 && onQuery();
 			setInputValue('')
 		}
 	};

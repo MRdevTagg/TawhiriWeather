@@ -2,17 +2,21 @@ import { useState } from "react";
 import { useFetchData } from "./hooks";
 import { Header, DailyWeather, CurrentWeather } from "./components";
 import styled from "styled-components";
+import { ErrorWindow } from "./utils/ErrorWindow";
 
 
 
 const MainSection = styled.section`
 display: flex;
 justify-content: space-between;
-margin-top: 110px;
+margin-top: 20px;
+height: 100%;
+overflow: hidden;
+gap: 1rem;
     @media (max-width: 800px) {
         flex-direction: column;
         align-items: center;
-        margin-top: 50px;
+        margin-top: 80px;
     }
 `;
 
@@ -33,6 +37,7 @@ function Tawhiri() {
  }
   return (
     <>
+    {error && <ErrorWindow/>}
       { location && <Header 
             weather={weather}
             style={{overflow:'hidden',top:'0'}} 
@@ -42,6 +47,7 @@ function Tawhiri() {
             inputValue={inputValue}
             setInputValue={setInputValue}/> 
       }
+
       <MainSection>
       { weather && weather.current_weather && <CurrentWeather weather={weather} location={location}/> }          
       { weather && weather.daily && <DailyWeather weather={weather} /> }

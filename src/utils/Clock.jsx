@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react';
 
-
-const Clock = () => {
+function Clock({timezone}) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const intervalID = setInterval(() => {
       setTime(new Date());
     }, 1000);
-
-    return () => clearInterval(timer);
+    return () => clearInterval(intervalID);
   }, []);
 
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  const seconds = time.getSeconds();
+  const formattedTime = time.toLocaleTimeString('en-US', { timeZone: timezone, hour12: false });
 
   return (
-    <span>
-      {hours}:{minutes < 10 ? '0' + minutes : minutes}:{seconds < 10 ? '0' + seconds : seconds}
-    </span>
+    <div>
+
+      <h3>{formattedTime}</h3>
+    </div>
   );
-};
+}
 
 export default Clock;
+
