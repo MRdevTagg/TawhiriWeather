@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import { buildURL, locationByIpAPI, locationByNameAPI, weatherAPI, weatherParams } from "../utils/API";
-
+import { useState, useEffect } from 'react';
+import { buildURL, locationByIpAPI, locationByNameAPI, weatherAPI, weatherParams } from '../utils/API';
 
 export function useFetchData( reload, query) {
   const [weather, setWeather] = useState({});
   const [location, setLocation] = useState({});
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const fetchData = async () => {
       try {
         let userData;
@@ -23,7 +22,7 @@ export function useFetchData( reload, query) {
           longitude: userData.lon || userData.longitude,
           country: userData.country || userData.country_name,
           city: userData.city || userData.name,
-					flag : `https://www.countryflagicons.com/SHINY/64/${userData.countryCode || userData.country_code}.png` || '',
+					flag : `https://www.countryflagicons.com/SHINY/64/${userData.country_code2 || userData.country_code}.png` || '',
           countryCode: userData.country_code || userData.countryCode,
         }
         const { latitude, longitude } = filteredUserData
