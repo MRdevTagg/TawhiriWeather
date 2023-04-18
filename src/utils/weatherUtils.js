@@ -1,3 +1,5 @@
+
+// util function to get formated day name or date number
 export const dayGet = (string)=> {
   const date = new Date(string)
   const options = { weekday: 'long' ,timeZone:'UTC'};
@@ -10,8 +12,10 @@ export const dayGet = (string)=> {
     ; 
 }
 
+// shorcut to get icons from accuWeather
 export const accuIconsURL = (icon = '01') =>`https://developer.accuweather.com/sites/default/files/${icon}-s.png`;
 
+// objects to handle weathercode cases
 export const weatherState = {
   0: 'Clear sky',
   1: 'Mainly clear',

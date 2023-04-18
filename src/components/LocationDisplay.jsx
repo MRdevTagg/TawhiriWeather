@@ -9,20 +9,21 @@ const CountryContainer = styled.div`
   justify-self: flex-start;
   min-width: 100%;
 	width: fit-content;
+	height: fit-content;
   gap: 21px;
   padding: 0.5rem 0.8rem;
   font-size: 1rem;
 	margin: 10px 0;
   background-color: #324777bb;
   border-radius: 12px;
-	box-shadow:  0 0 5px #fff4, inset 0 0 10px #0001;
+	box-shadow:  0 0 5px #00000044, inset 0 0 10px #fff4;
 	color: white;
   > .flag {
     width: 40px;
   }
 `;
 
-function LocationDisplay({location}) {
+export function LocationDisplay({location}) {
 	const { country, city, flag, timezone } = location;
   return (
     <CountryContainer>

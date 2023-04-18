@@ -1,40 +1,35 @@
 import styled from 'styled-components';
-import { accuIconsURL } from './weatherUtils';
+import { accuIconsURL } from '../utils/weatherUtils';
 
 
 const MinMaxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
 	.min,.max{
      display:flex; 
+     align-items: center;
+     justify-content: center;
+     gap: .2rem;
      padding: 0;
      >img{
       width: 40px;
       height: 40px;
       object-fit: contain;
-      margin: 0;
-      padding: 0;
     }
-    }
- >div{
-  	display:flex;
-  	justify-content: center;
-  	align-items: center;
     > p{
     font-size: 20px;
-    padding: 0;
-    margin: 0;
-   }}
+    }
+  }
 `;
 
 function MinMax({ minTemp, maxTemp }) {
 
   return (
     <MinMaxContainer>
-			<div className="min"> <img src={accuIconsURL('31')} alt="min" /> <p> &deg;{minTemp} </p></div>
-      <div className="max"> <img src={accuIconsURL('30')} alt="max" /> <p> &deg;{maxTemp} </p></div>
+			<div className="min"> <p> &deg;{minTemp} </p> <img src={accuIconsURL('31')} alt="min" /> </div>
+      <div className="max"> <p> &deg;{maxTemp} </p> <img src={accuIconsURL('30')} alt="max" /> </div>
     </MinMaxContainer>
   );
 }

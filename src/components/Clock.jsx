@@ -10,11 +10,10 @@ function Clock({timezone}) {
     return () => clearInterval(intervalID);
   }, []);
 
-  const formattedTime = time.toLocaleTimeString('en-US', { timeZone: timezone, hour12: false });
+  const formattedTime = time.toLocaleTimeString('en-US', { timeZone: timezone, hour12: true });
 
   return (
     <div>
-
       <h3>{formattedTime}</h3>
     </div>
   );

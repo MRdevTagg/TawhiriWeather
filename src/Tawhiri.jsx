@@ -1,31 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetchData } from "./hooks";
-import { Header, DailyWeather, CurrentWeather } from "./components";
-import styled from "styled-components";
-import { ErrorWindow } from "./utils/ErrorWindow";
-
-
-
-const MainSection = styled.section`
-display: flex;
-justify-content: space-between;
-margin-top: 20px;
-height: 100%;
-overflow: hidden;
-gap: 1rem;
-    @media (max-width: 800px) {
-        flex-direction: column;
-        align-items: center;
-        margin-top: 80px;
-    }
-`;
-
+import { Header, DailyWeather, CurrentWeather, ErrorWindow, MainSection} from "./components";
 
 function Tawhiri() {
   const [ reload, setReload ] = useState(true);
   const [ query, setQuery ] = useState('');
   const { weather, location, error } = useFetchData(reload,query);
   const [ inputValue, setInputValue ] = useState('');
+
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+    setIntervalId(
+      setInterval(() => {
+        setReload((prevReload) => !prevReload);
+      }, 300000)
+    );
+  }, [query]);
+  
  const onReload = () =>{
   setReload(prevState => !prevState);
  }
@@ -35,6 +30,7 @@ function Tawhiri() {
  const onQueryLoacation = ()=>{
     setQuery(null)
  }
+ 
   return (
     <>
     {error && <ErrorWindow/>}
@@ -45,7 +41,7 @@ function Tawhiri() {
             onReload={onReload}  
             onQueryLoacation={onQueryLoacation}
             inputValue={inputValue}
-            setInputValue={setInputValue}/> 
+            setInputValue={setInputValue}/>            
       }
 
       <MainSection>

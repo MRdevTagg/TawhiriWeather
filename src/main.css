@@ -70,3 +70,12 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  height: inherit;
+  overflow: hidden;
+  padding: 1.5rem;
+}

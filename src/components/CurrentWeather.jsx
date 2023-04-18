@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { weatherState, forecastIcons } from "../utils/weatherUtils";
-import MinMax from "../utils/MinMax";
-import LocationDisplay from "../utils/LocationDisplay";
+import MinMax from "./MinMax";
+import LocationDisplay from "./LocationDisplay";
 
 const StyledContainer = styled.div`
 	display: flex;
@@ -14,6 +14,7 @@ const StyledContainer = styled.div`
 	@media (min-width: 800) {
 	 margin-bottom: 5px;
 	}
+	>*{ overflow:hidden; }
 `
 export const StyledCurrentWeather = styled.div`
 	display: flex;
@@ -21,44 +22,24 @@ export const StyledCurrentWeather = styled.div`
 	align-items: flex-start;
 	height: fit-content;
 	width: 100%;
-	padding: 0 10px 10px ;
+	padding: 10px 10px ;
 	color: #ffffff;
-	
+	gap: .5rem;
 	border-radius: 12px;
 	box-shadow: 0 5px 12px #0000003b, inset 0 0 20px #fff7;
-	background-color: #27528d1c;
-	>.header{
-	border-radius: 8px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	background-color: #ffffffce;
-	padding: 5px;
-	
-	margin-bottom: 10px;
-	>h1{
-		font-size: 1.5rem;
-		padding: 0 10px;
-		color:#27528d;
-	}
-	> .country{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		justify-self: flex-start;
-		width: fit-content;
-		gap: 21px;
-		padding: 0.5rem .8rem;
-		
-		font-size: 1.2rem;
-		background-color: #324777bb;	
-		border-radius: 12px;
-		>.flag{
-			width: 40px;
-		}
-	}
+	background-color: #27528d25;
+	> .title{
+ 
+ width: 100%;
+ align-self: flex-start;
+ min-height: 3rem;
+ background-color: #27528dac;
+ border-radius: 12px 12px 0 0; 
+ >h1{
+	 font-size: 1.5rem;
+	 color: #daeeff;
+	 padding: .5rem 1rem;
+ }
 
 }
 > .forecast{
@@ -72,7 +53,7 @@ export const StyledCurrentWeather = styled.div`
 	height: 100%;
 	color: #27528d;
 	padding: .5rem;
-	border-radius: 12px;
+	border-radius: 0 0 12px 15px;
 	text-align: left;
 	background-color: #ffffff92;
 		>.forecast-left{
@@ -95,6 +76,8 @@ export const StyledCurrentWeather = styled.div`
 	>.forecast-right{
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
+		height: 195px;
 		padding:.5rem;
 	}
 }
@@ -104,10 +87,9 @@ export function CurrentWeather({ weather, location }) {
 	const { precipitation_probability_mean, temperature_2m_min, temperature_2m_max }= weather.daily;	
 	return (
 	<StyledContainer>
-
+<LocationDisplay location={location}/>
 		<StyledCurrentWeather>
-				<LocationDisplay location={location}/>
-			<div className="header">
+			<div className="title">
 				<h1> CURRENT WEATHER</h1>
 			</div>	
 			<div className="forecast">

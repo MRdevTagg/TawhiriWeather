@@ -1,41 +1,20 @@
 import { useState, useEffect } from "react";
-const weatherParams = {
-  current_weather: true,
-  timezone: "auto",
-  daily: ["temperature_2m_max", "temperature_2m_min", "weathercode",'precipitation_probability_mean','apparent_temperature_max'],
-  forecast_days: "15",
-  hourly:['temperature_2m','precipitation_probability','apparent_temperature'],
-}
-const weatherAPI = 'https://api.open-meteo.com/v1/forecast';
-
-function buildURL( baseUrl, params, location ) {
-  const updatedParams = {
-    ...location,
-    ...params,
-  };
-  const url = `${baseUrl}?${new URLSearchParams(updatedParams).toString()}`;
-  return url;
-}
+import { buildURL, locationByIpAPI, locationByNameAPI, weatherAPI, weatherParams } from "../utils/API";
 
 
 export function useFetchData( reload, query) {
   const [weather, setWeather] = useState({});
   const [location, setLocation] = useState({});
   const [error, setError] = useState("");
- 
-
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
       try {
         let userData;
         if (query) {
-          const getUserData = await fetch(
-            `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=1&language=en&format=json`
-          );
-          let data = await getUserData.json();
+          const getUserData = await fetch( locationByNameAPI(query));
+          const data = await getUserData.json();
           userData = data.results[0]
         } else {
-          const getUserData = await fetch(`http://ip-api.com/json/`);
+          const getUserData = await fetch( locationByIpAPI );
           userData = await getUserData.json();
         }
 			  const filteredUserData = {
@@ -58,9 +37,10 @@ export function useFetchData( reload, query) {
       catch (err) {
         setError(err);
       }
-    };    
+  };  
+  useEffect(() => {  
     fetchData();
-
+    console.log('dataFetched')
   }, [reload,query]);
 
   return { weather, location, error };

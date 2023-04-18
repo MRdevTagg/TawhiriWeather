@@ -1,4 +1,4 @@
-import MinMax from "../utils/MinMax";
+import MinMax from "./MinMax";
 import { dayGet, weatherState, forecastIcons } from "../utils/weatherUtils";
 import styled from "styled-components";
 
@@ -16,7 +16,7 @@ export const DayCardContainer = styled.div`
   box-shadow:inset 0 0 6px #ffffffc0, 0 0 12px #00000033;
   background-color: #ffffff63;
   backdrop-filter: blur(2px);
-  height: calc(100vh - 110px);
+  height: calc(100vh - 150px);
   overflow: scroll;
 ::-webkit-scrollbar{
   width: 0
@@ -39,7 +39,7 @@ export const DayCardContainer = styled.div`
   min-width: 95%;
 
      width: 95%;
-     height:100%
+     height:100%;
 } 
 `;
 
@@ -58,9 +58,10 @@ overflow-y: hidden;
  width: 400px;
   min-height:130px;
   box-shadow: inset 0 0 6px #ffffffc0, 0 0 12px #0000003e;
+  transform: scale(.95);
   transition: transform .7s;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1);
 
   }
 *{ overflow:hidden; }
