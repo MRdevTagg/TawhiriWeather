@@ -28,7 +28,6 @@ position: relative;
       height: 0;
     }
   }
-
 > .title{
   position: sticky;
   overflow: hidden;
