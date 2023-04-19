@@ -84,6 +84,7 @@ export const DayCard = styled.div`
       text-align: center;
       color: #cedffb;
       border-radius: 4px;  
+      width:40%;
       background-color: #0b4f83b3;
     }
     >h3{
