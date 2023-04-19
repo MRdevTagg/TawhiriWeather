@@ -67,7 +67,7 @@ export const StyledCurrentWeather = styled.div`
 				 width: fit-content;
 		}
 		> .forecast-icon{
-			width: 150px;
+			width: 100%;
 			aspect-ratio: 1 / 1;
 			object-fit: contain;
 			border-radius: 10px;
@@ -77,16 +77,18 @@ export const StyledCurrentWeather = styled.div`
 	>.forecast-right{
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
-		width: fit-content;
-		height: 195px;
+		justify-content: center;
+		align-items: space-between;
+		width: 100%;
+		height: 100%;
 		font-weight: 600;
-		padding:.5rem;
+		
 		>p{
 			font-size: 1rem;
 			border: 1px solid #27528d79;
 			padding: .4rem;
-			border-radius: 3px;
+			border-radius: .5rem;
+			margin-bottom: .5rem;
 			@media (max-width: 360px) {
 			font-size: .8rem;
 			}

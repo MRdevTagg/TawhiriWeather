@@ -100,10 +100,10 @@ export const DayCard = styled.div`
   height:fit-content;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   > img {
-    width: 80px;
-    height: 80px;
+    width: 50%;
+    height: 50%;
     object-fit: contain;
   }
   > p {
