@@ -61,7 +61,7 @@ export const DayCard = styled.div`
   background-color: #ffffff58;
   border-radius: 4px;
   max-width: 100%;
-  width: 400px;
+  
   min-height:130px;
   transform: scale(.95);
   transition: transform .7s;
