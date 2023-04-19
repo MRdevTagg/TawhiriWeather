@@ -3,6 +3,7 @@ import MinMax from './MinMax';
 import { dayGet, weatherState, forecastIcons } from '../utils/weatherUtils';
 
 export const DayCardContainer = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -14,21 +15,28 @@ export const DayCardContainer = styled.div`
   gap: .1rem;
   border-radius: 12px;
   box-shadow:inset 0 0 6px #ffffffc0, 0 0 12px #00000033;
-  background-color: #ffffff63;
-  backdrop-filter: blur(2px);
+  background-color: #254fc428;
+
   height: calc(100vh - 150px);
-  overflow: scroll;
-::-webkit-scrollbar{
-  width: 0
-}
+  >.days{
+
+    overflow: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
 
 > .title{
- 
+ position: sticky;
+ top: 0;
   width: 100%;
- 
+ z-index: 30;
   align-self: flex-start;
   min-height: 3rem;
-  background-color: #27528dc7;
+  background-color: #476d9f;
   border-radius: 12px 12px 0 0; 
   >h2{
     font-size: 1.5rem;
@@ -44,27 +52,28 @@ export const DayCardContainer = styled.div`
 `;
 
 export const DayCard = styled.div`
-overflow-y: hidden;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items:space-between;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: #ffffff4d;
+  background-color: #ffffff58;
+
   border-radius: 4px;
-  backdrop-filter: blur(4px);
+ 
   max-width: 100%;
- width: 400px;
+  width: 400px;
   min-height:130px;
-  box-shadow: inset 0 0 6px #ffffffc0, 0 0 12px #0000003e;
+  
   transform: scale(.95);
   transition: transform .7s;
   &:hover {
     transform: scale(1);
 
   }
-*{ overflow:hidden; }
+>*{ overflow:hidden; }
   >pre {
     min-width: 100%;
     display: flex;
@@ -104,9 +113,7 @@ overflow-y: hidden;
   display: flex;
  justify-content: space-between;
  align-items: flex-start;
- >*{
-  width:33.3%;
- }
+
   > img {
     width: 80px;
     height: 80px;
@@ -133,6 +140,7 @@ export function DailyWeather({ weather }) {
       <div className="title">
         <h2>DAILY WEATHER</h2>
       </div>
+      <div className="days">
       {time.map((day, i) => i > 0
     && (
     <DayCard key={day}>
@@ -153,6 +161,7 @@ export function DailyWeather({ weather }) {
       </div>
     </DayCard>
 ))}
+</div>
     </DayCardContainer>
   );
 }

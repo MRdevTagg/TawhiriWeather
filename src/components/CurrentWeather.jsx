@@ -84,7 +84,11 @@ export const StyledCurrentWeather = styled.div`
 		font-weight: 600;
 		padding:.5rem;
 		>p{
+			font-size: 1rem;
 			border-bottom: 1px solid #27528d;
+			@media (max-width: 360px) {
+			font-size: .8rem;
+			}
 		}
 	}
 }
