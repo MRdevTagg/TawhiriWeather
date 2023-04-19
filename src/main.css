@@ -2,6 +2,7 @@ html {
   width: 100%;
   margin:0;
   padding:0;
+  height: 100vh;
   overflow-x: hidden;
   box-sizing: border-box;
   font-size: 16px;
@@ -15,12 +16,13 @@ html {
 }
 
 body,#root {
+  height: 100vh;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-	 background-image: url('src/assets/clear.jpg'); 
+	 background-image: url('/assets/clear.jpg'); 
    background-attachment: fixed;
    background-size: cover;
 }

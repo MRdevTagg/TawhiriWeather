@@ -10,6 +10,6 @@ gap: 1rem;
     @media (max-width: 800px) {
         flex-direction: column;
         align-items: center;
-        margin-top: 80px;
+        padding-top: 60px;
     }
 `;

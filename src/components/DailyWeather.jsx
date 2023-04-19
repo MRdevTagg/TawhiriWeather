@@ -9,17 +9,15 @@ position: relative;
   justify-content: flex-start;
   align-items: center;
   padding: .5rem .5rem 0 .5rem;
-  margin: 0 .5rem;
+  margin: 0 .5rem .5rem;
   width: 450px;
   min-width: 400px;
   gap: .1rem;
   border-radius: 12px;
   box-shadow:inset 0 0 6px #ffffffc0, 0 0 12px #00000033;
   background-color: #254fc428;
-
-  height: calc(100vh - 150px);
+  height: calc(100vh - 100px);
   >.days{
-
     overflow: scroll;
     scrollbar-width: none; 
     -ms-overflow-style: none; 
@@ -60,8 +58,8 @@ export const DayCard = styled.div`
   margin-bottom: 8px;
   background-color: #ffffff58;
   border-radius: 4px;
-  max-width: 100%;
-  
+  min-width: 100%;
+  width:fit-content;
   min-height:130px;
   transform: scale(.95);
   transition: transform .7s;
@@ -81,19 +79,19 @@ export const DayCard = styled.div`
     > h2{
       font-size: 1.2rem;
       font-weight: bold;
-      text-align: center;
+      text-align: left;
       color: #cedffb;
       border-radius: 4px;  
-      width:40%;
+      width:70%;
       background-color: #0b4f83b3;
     }
     >h3{
       color:#0b4f83b3;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: bold;
       text-align: center;
-      border: 1px solid #003771;
       border-radius: 1rem;
+      background-color: #f6f9ffb8;
     }
   }
 

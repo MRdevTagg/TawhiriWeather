@@ -3,7 +3,7 @@ import styled from 'styled-components';
 /* eslint-disable no-confusing-arrow */
 /* eslint-disable react/prop-types */
 export const StyledHeader = styled.header`
-overflow: hidden;
+  overflow: hidden;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -15,7 +15,7 @@ overflow: hidden;
 	box-shadow: inset 0 0 19px #e4f9fb5b, 0 0 19px #0000002c;
 	backdrop-filter: blur(15px);
   margin: 0;
-	height:100px;
+	height:70px;
 	background-image: linear-gradient(to left, #c6e3ff85,#d0f1ff1a 80%);
 	width: 100%;
 	z-index: 9999;
@@ -25,14 +25,13 @@ overflow: hidden;
 
 	.logo{
 		padding: 0;
-		max-height: 80px;
+		max-height: 60px;
 		max-width: 200px;
 		width: fit-content;
 		object-fit:contain;	
 	@media (max-width: 800px) {
 			 height: 50px;
 			 max-width: 150px;
-			 width: fit-content;
 	}
 }
 	> .buttons{
@@ -124,15 +123,15 @@ export function Header({
 	return (
   <StyledHeader>
     <div className="logo-container">
-      <img className="logo" src="src/assets/tawhiri-logoisohor.svg" alt="TAWHIRI WEATHER" />
+      <img className="logo" src="/assets/tawhiri-logoisohor.svg" alt="TAWHIRI WEATHER" />
     </div>
     <div className="buttons">
       <InputSearch hidden={inputHidden}>
-        <Button type="submit" onClick={handleSearchClick}><img src="src/assets/search.svg" alt="Search by city" /></Button>
+        <Button type="submit" onClick={handleSearchClick}><img src="/assets/search.svg" alt="Search by city" /></Button>
         <input type="text" ref={InputValue} placeholder="Search by City" value={inputValue} onChange={handleInputChange} />
       </InputSearch>
-      <Button type="submit" onClick={onQueryLoacation}><img src="src/assets/search-location.svg" alt="Search by Location" /></Button>
-      <Button type="submit" onClick={onReload}><img src="src/assets/refresh.svg" alt="Refresh" /></Button>
+      <Button type="submit" onClick={onQueryLoacation}><img src="/assets/search-location.svg" alt="Search by Location" /></Button>
+      <Button type="submit" onClick={onReload}><img src="/assets/refresh.svg" alt="Refresh" /></Button>
     </div>
   </StyledHeader>
 	);

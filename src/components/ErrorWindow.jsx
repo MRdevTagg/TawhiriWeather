@@ -31,8 +31,8 @@ const ErrorWindowContainer = styled.div`
 export function ErrorWindow() {
 	return (
   <ErrorWindowContainer>
-    <img src="../src/assets/tawhiri-logo.svg" alt="Tawhiri" />
-    <img src="../src/assets/tawhiri-iso.svg" alt="Tawhiri" />
+    <img src="/assets/tawhiri-logo.svg" alt="Tawhiri" />
+    <img src="/assets/tawhiri-iso.svg" alt="Tawhiri" />
     <h1> We have and issue fetching the data </h1>
     <hr />
     <h3> - Check if you granted permission to access your location</h3>

@@ -76,19 +76,23 @@ export const StyledCurrentWeather = styled.div`
 	}
 	>.forecast-right{
 		display: flex;
+		align-self: flex-start;
 		flex-direction: column;
 		justify-content: center;
 		align-items: space-between;
 		width: 100%;
 		height: 100%;
+		max-width:500px;
 		font-weight: 600;
 		
 		>p{
 			font-size: 1rem;
-			border: 1px solid #27528d79;
+			background-color: #27528d18;
 			padding: .4rem;
+
 			border-radius: .5rem;
-			margin-bottom: .5rem;
+			margin: .5rem;
+			margin-top:0;
 			@media (max-width: 360px) {
 			font-size: .8rem;
 			}
