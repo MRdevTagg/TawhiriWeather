@@ -45,7 +45,6 @@ export const StyledCurrentWeather = styled.div`
 	display: flex;
 	gap: 12px;
 	font-size: 1rem;
-	font-weight: lighter;
 	align-items: center;
 	justify-content: flex-start;
 	width: 100%;
@@ -85,7 +84,9 @@ export const StyledCurrentWeather = styled.div`
 		padding:.5rem;
 		>p{
 			font-size: 1rem;
-			border-bottom: 1px solid #27528d;
+			border: 1px solid #27528d79;
+			padding: .4rem;
+			border-radius: 3px;
 			@media (max-width: 360px) {
 			font-size: .8rem;
 			}
@@ -93,28 +94,29 @@ export const StyledCurrentWeather = styled.div`
 	}
 }
 `;
+/* eslint-disable react/jsx-one-expression-per-line */
 export function CurrentWeather({ weather, location }) {
 	const { weathercode, temperature, winddirection } = weather.current_weather;
-	const { precipitation_probability_mean, temperature_2m_min, temperature_2m_max }= weather.daily;	
+	const { precipitation_probability_mean, temperature_2m_min, temperature_2m_max } = weather.daily;
 	return (
   <StyledContainer>
-    <LocationDisplay location={location}/>
+    <LocationDisplay location={location} />
     <StyledCurrentWeather>
       <div className="title">
         <h1> CURRENT WEATHER</h1>
-				</div>
-			<div className="forecast">
-				<div className="forecast-left">
-          <img className="forecast-icon" src={ forecastIcons[weathercode] } alt="weatherIcon" />
+      </div>
+      <div className="forecast">
+        <div className="forecast-left">
+          <img className="forecast-icon" src={forecastIcons[weathercode]} alt="weatherIcon" />
           <MinMax minTemp={temperature_2m_min[0]} maxTemp={temperature_2m_max[0]} />
-			  </div>
-				<div className="forecast-right">
-					<p> <b>Forecast:</b> { weatherState[weathercode] }</p>
-					<p> <b>Wind speed:</b> {winddirection}kmh</p>
-					<p> <b>Temperature:</b> { temperature } &deg;C</p>
-					<p> <b>Precipitation:</b> { precipitation_probability_mean[0] }%</p>
-				</div>
-			</div>
+        </div>
+        <div className="forecast-right">
+          <p> Forecast: { weatherState[weathercode] }</p>
+          <p> Wind speed: {winddirection}kmh</p>
+          <p> Temperature: { temperature } &deg;C</p>
+          <p> Precipitation: { precipitation_probability_mean[0] }%</p>
+        </div>
+      </div>
     </StyledCurrentWeather>
   </StyledContainer>
 );

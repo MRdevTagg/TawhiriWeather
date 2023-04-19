@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styled from 'styled-components';
 import Clock from './Clock';
 
@@ -23,8 +24,10 @@ const CountryContainer = styled.div`
   }
 `;
 
-export function LocationDisplay({location}) {
-  const { country, city, flag, timezone } = location;
+export function LocationDisplay({ location }) {
+  const {
+    country, city, flag, timezone,
+  } = location;
   return (
     <CountryContainer>
       <img className="flag" src={flag} alt={country} />
@@ -34,4 +37,4 @@ export function LocationDisplay({location}) {
   );
 }
 
-export default LocationDisplay
+export default LocationDisplay;

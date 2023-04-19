@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-one-expression-per-line */
 import styled from 'styled-components';
 import { accuIconsURL } from '../utils/weatherUtils';
-/* eslint-disable react/prop-types */
+
 const MinMaxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,7 +30,7 @@ return (
   <MinMaxContainer>
     <div className="min">
       <p>&deg;{minTemp}</p>
-      <img src={accuIconsURL('31')} alt="min" /> 
+      <img src={accuIconsURL('31')} alt="min" />
     </div>
     <div className="max">
       <p>&deg;{maxTemp}</p>

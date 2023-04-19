@@ -30,29 +30,29 @@ position: relative;
   }
 
 > .title{
- position: sticky;
- top: 0;
+  position: sticky;
+  overflow: hidden;
+  top: 0;
   width: 100%;
- z-index: 30;
+  z-index: 30;
   align-self: flex-start;
   min-height: 3rem;
-  background-color: #476d9f;
+  background-color: #27528dac;
   border-radius: 12px 12px 0 0; 
   >h2{
     font-size: 1.5rem;
     color: #daeeff;
     padding: .5rem 1rem;
   }
-}@media (max-width: 500px) {
-  min-width: 95%;
-
+}
+@media (max-width: 500px) {
+     min-width: 95%;
      width: 95%;
      height:100%;
 } 
 `;
 
 export const DayCard = styled.div`
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,18 +60,14 @@ export const DayCard = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   background-color: #ffffff58;
-
   border-radius: 4px;
- 
   max-width: 100%;
   width: 400px;
   min-height:130px;
-  
   transform: scale(.95);
   transition: transform .7s;
   &:hover {
     transform: scale(1);
-
   }
 >*{ overflow:hidden; }
   >pre {
@@ -98,28 +94,19 @@ export const DayCard = styled.div`
       text-align: center;
       border: 1px solid #003771;
       border-radius: 1rem;
-
     }
-    > .w-state { 
-      text-align: left;
-    font-size: 15px; 
-    
   }
-  }
-
 
 .weather-state{
   height:fit-content;
   display: flex;
- justify-content: space-between;
- align-items: flex-start;
-
+  justify-content: space-between;
+  align-items: flex-start;
   > img {
     width: 80px;
     height: 80px;
     object-fit: contain;
   }
-
   > p {
     font-size: 15px;
     font-weight: bold;
@@ -127,13 +114,16 @@ export const DayCard = styled.div`
     margin: 2px;
     padding: 2px;
     color: #003771;
+    width: 33.3%;
   }
 }
-
 `;
-
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 export function DailyWeather({ weather }) {
-  const { weathercode, temperature_2m_min, temperature_2m_max, time } = weather.daily;
+  const {
+    weathercode, temperature_2m_min, temperature_2m_max, time,
+  } = weather.daily;
   return (
 
     <DayCardContainer>
@@ -141,27 +131,23 @@ export function DailyWeather({ weather }) {
         <h2>DAILY WEATHER</h2>
       </div>
       <div className="days">
-      {time.map((day, i) => i > 0
-    && (
-    <DayCard key={day}>
-      <pre>
-        <h2>{ dayGet(day).name.toUpperCase() }</h2>
-
-        <h3>{ dayGet(day).number }</h3>
-      </pre>
-      <div className="weather-state">
-        <p className="w-state">
-          {weatherState[weathercode[i]].split(':')[0]}
-          :
-          <br />
-          {weatherState[weathercode[i]].split(':')[1]}
-        </p>
-        <img className="weatherIcon" src={forecastIcons[weathercode[i]]} alt="" />
-        <MinMax minTemp={temperature_2m_min[i]} maxTemp={temperature_2m_max[i]} />
+        {time.map((day, i) => i > 0
+        && (
+        <DayCard key={day}>
+          <pre>
+            <h2>{ dayGet(day).name.toUpperCase() }</h2>
+            <h3>{ dayGet(day).number }</h3>
+          </pre>
+          <div className="weather-state">
+            <p className="w-state">
+              {weatherState[weathercode[i]]}
+            </p>
+            <img className="weatherIcon" src={forecastIcons[weathercode[i]]} alt="" />
+            <MinMax minTemp={temperature_2m_min[i]} maxTemp={temperature_2m_max[i]} />
+          </div>
+        </DayCard>
+      ))}
       </div>
-    </DayCard>
-))}
-</div>
     </DayCardContainer>
   );
 }

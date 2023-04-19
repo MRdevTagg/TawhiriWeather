@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useFetchData } from './hooks';
+import useFetchData from './hooks/useFetchData';
 import {
  Header, DailyWeather, CurrentWeather, ErrorWindow, MainSection,
 } from './components';
@@ -35,7 +35,6 @@ function Tawhiri() {
 
   return (
     <>
-      {error && <ErrorWindow />}
       { location && (
       <Header
         weather={weather}
@@ -47,7 +46,7 @@ function Tawhiri() {
         setInputValue={setInputValue}
       />
 )}
-
+      {error && !query && <ErrorWindow />}
       <MainSection>
         { weather && weather.current_weather
         && <CurrentWeather weather={weather} location={location} /> }

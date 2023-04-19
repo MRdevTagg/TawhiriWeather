@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 
-function Clock({timezone}) {
+function Clock({ timezone }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -20,4 +21,3 @@ function Clock({timezone}) {
 }
 
 export default Clock;
-
