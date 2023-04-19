@@ -13,9 +13,6 @@ const StyledContainer = styled.div`
 	width: 100%;
 	height: 100%;
 	padding: 0 12px 12px;
-	@media (min-width: 800) {
-	 margin-bottom: 5px;
-	}
 	>*{ overflow:hidden; }
 `;
 export const StyledCurrentWeather = styled.div`
@@ -67,6 +64,9 @@ export const StyledCurrentWeather = styled.div`
 		padding:.5rem;
 		width: 200px;
 		border-radius: 5px;
+		@media (max-width: 800px) {
+				 width: 100px;
+		}
 		> .forecast-icon{
 			width: 100px;
 			aspect-ratio: 1 / 1;
@@ -79,8 +79,13 @@ export const StyledCurrentWeather = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		width: fit-content;
 		height: 195px;
+		font-weight: 600;
 		padding:.5rem;
+		>p{
+			border-bottom: 1px solid #27528d;
+		}
 	}
 }
 `;
@@ -101,9 +106,9 @@ export function CurrentWeather({ weather, location }) {
 			  </div>
 				<div className="forecast-right">
 					<p> <b>Forecast:</b> { weatherState[weathercode] }</p>
-					<p> <b>Wind direction:</b> {winddirection}kmh</p>
+					<p> <b>Wind speed:</b> {winddirection}kmh</p>
 					<p> <b>Temperature:</b> { temperature } &deg;C</p>
-					<p> <b>Precipitation probability:</b> { precipitation_probability_mean[0] }%</p>
+					<p> <b>Precipitation:</b> { precipitation_probability_mean[0] }%</p>
 				</div>
 			</div>
     </StyledCurrentWeather>
