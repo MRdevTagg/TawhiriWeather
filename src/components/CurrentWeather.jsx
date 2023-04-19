@@ -56,22 +56,22 @@ export const StyledCurrentWeather = styled.div`
 	background-color: #ffffff92;
 		>.forecast-left{
 		display: flex;
-		background-color: #ffffff53;
+		background-color: #03488514;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		padding:.5rem;
 		width: 200px;
 		border-radius: 5px;
-		@media (max-width: 800px) {
-				 width: 100px;
+		@media (max-width: 900px) {
+				 width: fit-content;
 		}
 		> .forecast-icon{
-			width: 100px;
+			width: 150px;
 			aspect-ratio: 1 / 1;
 			object-fit: contain;
 			border-radius: 10px;
-			padding: .8rem;
+		
 		}
 	}
 	>.forecast-right{
